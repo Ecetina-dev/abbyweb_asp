@@ -9,27 +9,15 @@ namespace AbbyWeb.Data
         {
         }
 
-        public DbSet<Alumno> Alumnos { get; set; }
-        public DbSet<Carrera> Carreras { get; set; }
+        public DbSet<Estudiante> Estudiantes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Alumno>(entity =>
+            modelBuilder.Entity<Estudiante>(entity =>
             {
-                entity.ToTable(tb => tb.UseSqlOutputClause(false));
-                entity.ToTable("alumno");
-                entity.HasKey(e => e.id_alumno);
-                entity.Property(e => e.id_alumno).ValueGeneratedOnAdd();
-                entity.HasIndex(e => e.no_control).IsUnique();
-                entity.HasOne(e => e.Carrera)
-                      .WithMany()
-                      .HasForeignKey(e => e.id_carrera);
-            });
-
-            modelBuilder.Entity<Carrera>(entity =>
-            {
-                entity.ToTable("carrera");
-                entity.HasKey(e => e.id_carrera);
+                entity.ToTable("Estudiante");
+                entity.HasKey(e => e.Id_Estudiante);
+                entity.Property(e => e.Id_Estudiante).ValueGeneratedOnAdd();
             });
         }
     }

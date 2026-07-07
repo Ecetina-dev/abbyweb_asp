@@ -1,0 +1,46 @@
+@page
+@model AbbyWeb.Pages.Estudiantes.IndexModel
+@{
+    ViewData["Title"] = "Estudiantes";
+}
+
+<h1>Estudiantes</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Crear Nuevo Estudiante</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Id_Estudiante)</th>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Nombres)</th>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Apellidos)</th>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Universidad)</th>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Semestre)</th>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Telefono)</th>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Correo)</th>
+            <th>@Html.DisplayNameFor(m => m.Estudiantes[0].Foto)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estudiante in Model.Estudiantes)
+        {
+            <tr>
+                <td>@estudiante.Id_Estudiante</td>
+                <td>@estudiante.Nombres</td>
+                <td>@estudiante.Apellidos</td>
+                <td>@estudiante.Universidad</td>
+                <td>@estudiante.Semestre</td>
+                <td>@estudiante.Telefono</td>
+                <td>@estudiante.Correo</td>
+                <td>@(estudiante.Foto != null ? "Si" : "No")</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@estudiante.Id_Estudiante" class="btn btn-sm btn-primary">Editar</a>
+                    <a asp-page="Delete" asp-route-id="@estudiante.Id_Estudiante" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

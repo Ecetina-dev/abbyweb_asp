@@ -3,12 +3,12 @@ using AbbyWeb.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AbbyWeb.Pages.Alumnos
+namespace AbbyWeb.Pages.Estudiantes
 {
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
-        public List<Alumno> Alumnos { get; set; } = new();
+        public List<Estudiante> Estudiantes { get; set; } = new();
 
         public IndexModel(ApplicationDbContext db)
         {
@@ -19,14 +19,11 @@ namespace AbbyWeb.Pages.Alumnos
         {
             try
             {
-                Alumnos = _db.Alumnos
-                    .Include(a => a.Carrera)
-                    .Where(a => a.is_deleted == null || a.is_deleted == 0)
-                    .ToList();
+                Estudiantes = _db.Estudiantes.ToList();
             }
             catch (Exception)
             {
-                TempData["error"] = "Error al cargar la lista de alumnos. Verifique la conexión con la base de datos.";
+                TempData["error"] = "Error al cargar la lista de estudiantes.";
             }
         }
     }

@@ -1,0 +1,57 @@
+@page
+@model AbbyWeb.Pages.Estudiantes.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Estudiante";
+}
+
+<h1>Eliminar Estudiante</h1>
+
+<h3>¿Está seguro de eliminar este estudiante?</h3>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <input type="hidden" asp-for="Estudiante.Id_Estudiante" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Estudiante.Nombres" class="control-label"></label>
+                <input asp-for="Estudiante.Nombres" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Estudiante.Apellidos" class="control-label"></label>
+                <input asp-for="Estudiante.Apellidos" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Estudiante.Direccion" class="control-label"></label>
+                <input asp-for="Estudiante.Direccion" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Estudiante.Universidad" class="control-label"></label>
+                <input asp-for="Estudiante.Universidad" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Estudiante.Telefono" class="control-label"></label>
+                <input asp-for="Estudiante.Telefono" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Estudiante.Correo" class="control-label"></label>
+                <input asp-for="Estudiante.Correo" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Estudiante.Semestre" class="control-label"></label>
+                <input asp-for="Estudiante.Semestre" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                <a asp-page="Index" class="btn btn-secondary">Volver a Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
