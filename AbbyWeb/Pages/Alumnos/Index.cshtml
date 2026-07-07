@@ -1,0 +1,54 @@
+@page
+@model AbbyWeb.Pages.Alumnos.IndexModel
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Lista de Alumnos</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="Create" class="btn btn-primary">
+                <i class="bi bi-plus-square"></i> &nbsp; Crear Nuevo Alumno
+            </a>
+        </div>
+    </div>
+    <br /><br />
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>No. Control</th>
+                <th>Nombre Completo</th>
+                <th>Email</th>
+                <th>Carrera</th>
+                <th>Semestre</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model.Alumnos)
+            {
+                <tr>
+                    <td width="10%">@obj.no_control</td>
+                    <td width="20%">
+                        @obj.nombre @obj.apellido_paterno @(obj.apellido_materno ?? "")
+                    </td>
+                    <td width="15%">@obj.email</td>
+                    <td width="15%">@(obj.Carrera?.nombre ?? "")</td>
+                    <td width="8%">@obj.semestre</td>
+                    <td width="10%">@obj.status_alumno</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-page="Edit" asp-route-id="@obj.id_alumno" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <a asp-page="Delete" asp-route-id="@obj.id_alumno" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

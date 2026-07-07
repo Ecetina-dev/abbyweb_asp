@@ -1,0 +1,72 @@
+@page
+@model AbbyWeb.Pages.Alumnos.DeleteModel
+
+<form method="post">
+    <input type="hidden" asp-for="Alumno.id_alumno" />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary pl-3">Eliminar Alumno</h2>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label asp-for="Alumno.no_control"></label>
+                    <input asp-for="Alumno.no_control" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.nombre"></label>
+                    <input asp-for="Alumno.nombre" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.apellido_paterno"></label>
+                    <input asp-for="Alumno.apellido_paterno" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.apellido_materno"></label>
+                    <input asp-for="Alumno.apellido_materno" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.email"></label>
+                    <input asp-for="Alumno.email" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.telefono"></label>
+                    <input asp-for="Alumno.telefono" disabled class="form-control" />
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label asp-for="Alumno.genero"></label>
+                    <input asp-for="Alumno.genero" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.fecha_nacimiento"></label>
+                    <input asp-for="Alumno.fecha_nacimiento" disabled class="form-control" type="date" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.id_carrera"></label>
+                    <input value="@Model.CarreraNombre" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.semestre"></label>
+                    <input asp-for="Alumno.semestre" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.grupo"></label>
+                    <input asp-for="Alumno.grupo" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.turno"></label>
+                    <input asp-for="Alumno.turno" disabled class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Alumno.status_alumno"></label>
+                    <input asp-for="Alumno.status_alumno" disabled class="form-control" />
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px;">Eliminar</button>
+        <a asp-page="Index" class="btn btn-secondary" style="width:150px;">Volver a Lista</a>
+    </div>
+</form>
