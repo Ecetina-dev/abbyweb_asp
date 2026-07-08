@@ -3,7 +3,6 @@ using AbbyWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 
 namespace AbbyWeb.Pages.Estudiantes
 {
@@ -40,26 +39,12 @@ namespace AbbyWeb.Pages.Estudiantes
             }
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            SanitizeDatos();
-
-            var validationContext = new ValidationContext(Estudiante);
-            var validationResults = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(Estudiante, validationContext, validationResults, validateAllProperties: true);
-
-            if (!isValid)
-            {
-                foreach (var vr in validationResults)
-                {
-                    ModelState.AddModelError(vr.MemberNames.FirstOrDefault() ?? "", vr.ErrorMessage ?? "");
-                }
-            }
+            SanitizarDatos();
 
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
             try
             {
@@ -71,7 +56,7 @@ namespace AbbyWeb.Pages.Estudiantes
                 }
 
                 _db.Estudiantes.Update(Estudiante);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
                 TempData["success"] = "Estudiante actualizado exitosamente.";
                 return RedirectToPage("Index");
             }
@@ -82,25 +67,14 @@ namespace AbbyWeb.Pages.Estudiantes
             }
         }
 
-        private void SanitizeDatos()
+        private void SanitizarDatos()
         {
-            if (Estudiante.Nombres != null)
-                Estudiante.Nombres = Estudiante.Nombres.Trim();
-
-            if (Estudiante.Apellidos != null)
-                Estudiante.Apellidos = Estudiante.Apellidos.Trim();
-
-            if (Estudiante.Direccion != null)
-                Estudiante.Direccion = string.IsNullOrWhiteSpace(Estudiante.Direccion) ? null : Estudiante.Direccion.Trim();
-
-            if (Estudiante.Universidad != null)
-                Estudiante.Universidad = string.IsNullOrWhiteSpace(Estudiante.Universidad) ? null : Estudiante.Universidad.Trim();
-
-            if (Estudiante.Telefono != null)
-                Estudiante.Telefono = string.IsNullOrWhiteSpace(Estudiante.Telefono) ? null : Estudiante.Telefono.Trim();
-
-            if (Estudiante.Correo != null)
-                Estudiante.Correo = string.IsNullOrWhiteSpace(Estudiante.Correo) ? null : Estudiante.Correo.Trim();
+            Estudiante.Nombres = Estudiante.Nombres?.Trim() ?? "";
+            Estudiante.Apellidos = Estudiante.Apellidos?.Trim() ?? "";
+            Estudiante.Direccion = string.IsNullOrWhiteSpace(Estudiante.Direccion) ? null : Estudiante.Direccion.Trim();
+            Estudiante.Universidad = string.IsNullOrWhiteSpace(Estudiante.Universidad) ? null : Estudiante.Universidad.Trim();
+            Estudiante.Telefono = string.IsNullOrWhiteSpace(Estudiante.Telefono) ? null : Estudiante.Telefono.Trim();
+            Estudiante.Correo = string.IsNullOrWhiteSpace(Estudiante.Correo) ? null : Estudiante.Correo.Trim();
         }
     }
 }

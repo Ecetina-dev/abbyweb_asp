@@ -21,7 +21,7 @@ namespace AbbyWeb.Models
         [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$", ErrorMessage = "Los apellidos solo pueden contener letras y espacios.")]
         public string Apellidos { get; set; }
 
-        [Display(Name = "Direccion")]
+        [Display(Name = "Dirección")]
         [StringLength(200)]
         public string? Direccion { get; set; }
 
@@ -29,7 +29,7 @@ namespace AbbyWeb.Models
         [StringLength(150)]
         public string? Universidad { get; set; }
 
-        [Display(Name = "Telefono")]
+        [Display(Name = "Teléfono")]
         [StringLength(10)]
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "El telefono solo puede contener numeros.")]
         public string? Telefono { get; set; }
