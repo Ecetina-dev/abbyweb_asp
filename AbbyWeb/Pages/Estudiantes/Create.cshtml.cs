@@ -10,7 +10,7 @@ namespace AbbyWeb.Pages.Estudiantes
         private readonly ApplicationDbContext _db;
 
         [BindProperty]
-        public Estudiante Estudiante { get; set; }
+        public Estudiante Estudiante { get; set; } = new();
 
         public CreateModel(ApplicationDbContext db)
         {

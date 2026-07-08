@@ -1,69 +1,70 @@
-# Abby
+# Abby — Gestión de Estudiantes
 
-Sistema web para gestión de estudiantes. CRUD completo con ASP.NET Core y Entity Framework Core.
+CRUD completo con ASP.NET Core + EF Core + SQL Server. Listo para correr en 3 pasos.
 
-## Stack Tecnológico
+## Quick Path
+
+```bash
+# 1. Configurar base de datos (appsettings.json)
+# 2. Aplicar migraciones
+dotnet ef database update --project AbbyWeb
+
+# 3. Correr
+dotnet run --project AbbyWeb
+```
+
+## Stack
 
 | Tecnología | Versión |
 |---|---|
 | .NET | 10.0 |
 | ASP.NET Core | 10.0 (Razor Pages) |
-| Entity Framework Core | 10.0.9 |
+| EF Core | 10.0.9 |
 | SQL Server | — |
-| Bootstrap | 5.x (incluido) |
+| Bootstrap | 5.x |
 
-## Estructura del Proyecto
+## Estructura
 
 ```
 Abby/
-├── Abby.slnx                    # Solución .NET 10
-├── README.md
-└── AbbyWeb/                     # Proyecto web
-    ├── Program.cs               # Punto de entrada y configuración
-    ├── AbbyWeb.csproj           # Dependencias NuGet
-    ├── appsettings.json         # Configuración (connection strings)
+├── Abby.slnx
+└── AbbyWeb/
+    ├── Program.cs                  # Entry point
     ├── Data/
-    │   └── ApplicationDbContext.cs  # DbContext de EF Core
+    │   └── ApplicationDbContext.cs # EF Core DbContext
     ├── Models/
-    │   └── Estudiante.cs        # Entidad Estudiante
+    │   └── Estudiante.cs           # Entidad: Id, Nombres, Apellidos, Direccion...
     ├── Pages/
-    │   ├── Index.cshtml         # Página principal
-    │   ├── Error.cshtml         # Página de error
-    │   ├── Estudiantes/
-    │   │   ├── Index.cshtml     # Listar estudiantes
-    │   │   ├── Create.cshtml    # Crear estudiante
-    │   │   ├── Edit.cshtml      # Editar estudiante
-    │   │   └── Delete.cshtml    # Eliminar estudiante
-    │   └── Shared/              # Layouts y partials
-    ├── Migrations/              # Migraciones de EF Core
-    └── wwwroot/                 # Archivos estáticos (CSS, JS, imágenes)
+    │   ├── Index.cshtml            # Home
+    │   └── Estudiantes/            # CRUD: Create, Edit, Delete, Index
+    ├── Migrations/
+    └── wwwroot/
 ```
 
-## Modelo de Datos
+## Modelo: Estudiante
 
-### Estudiante
+| Campo | Tipo | Requerido | Validación |
+|---|---|---|---|
+| Id_Estudiante | int (PK, auto) | ✅ | — |
+| Nombres | string(100) | ✅ | Solo letras |
+| Apellidos | string(100) | ✅ | Solo letras |
+| Direccion | string(200) | ❌ | — |
+| Universidad | string(150) | ❌ | — |
+| Telefono | string(10) | ❌ | Solo dígitos |
+| Correo | string(150) | ❌ | Email válido |
+| Semestre | int (1-12) | ❌ | Rango 1-12 |
+| Foto | byte[] | ❌ | — |
 
-| Campo | Tipo | Requerido |
-|---|---|---|
-| Id_Estudiante | int (PK, autoincremental) | ✅ |
-| Nombres | string (100) | ✅ |
-| Apellidos | string (100) | ✅ |
-| Direccion | string (200) | ❌ |
-| Universidad | string (150) | ❌ |
-| Telefono | string (10) | ❌ |
-| Correo | string (150) | ❌ |
-| Semestre | int (1-12) | ❌ |
-| Foto | byte[] | ❌ |
+## Setup
 
-## Requisitos
+### Requisitos
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 - SQL Server (local o remoto)
 
-## Configuración
+### Connection String
 
-1. Clonar el repositorio
-2. Configurar la connection string en `appsettings.json`:
+En `appsettings.json`:
 
 ```json
 "ConnectionStrings": {
@@ -71,44 +72,31 @@ Abby/
 }
 ```
 
-3. Aplicar migraciones:
+### Migraciones
 
 ```bash
-dotnet ef database update --project AbbyWeb
-```
-
-4. Ejecutar:
-
-```bash
-dotnet run --project AbbyWeb
-```
-
-## Comandos Útiles
-
-```bash
-# Ejecutar la aplicación
-dotnet run --project AbbyWeb
-
-# Agregar una migración
-dotnet ef migrations add NombreMigracion --project AbbyWeb
-
-# Aplicar migraciones a la BD
+# Aplicar
 dotnet ef database update --project AbbyWeb
 
-# Ver migraciones existentes
-dotnet ef migrations list --project AbbyWeb
-
-# Compilar sin ejecutar
-dotnet build --project AbbyWeb
+# Agregar nueva
+dotnet ef migrations Add_Nombre --project AbbyWeb
 ```
 
-## Skills de Desarrollo
+## Comandos
 
-Este proyecto está configurado con skills oficiales de Microsoft para .NET:
+```bash
+dotnet run --project AbbyWeb          # Ejecutar
+dotnet build --project AbbyWeb        # Compilar
+dotnet ef migrations list --project AbbyWeb  # Listar migraciones
+```
 
-- `dotnet-efcore-queries` — optimización de consultas EF Core
-- `dotnet-webapi` — patrones ASP.NET Core
-- `dotnet-mstest-tests` — testing unitario
-- `work-unit-commits` — commits lógicos y revisables
-- `comment-writer` — comentarios de código profesionales
-- `cognitive-doc-design` — documentación clara y efectiva
+## Skills del Proyecto
+
+| Skill | Para qué |
+|---|---|
+| `dotnet-efcore-queries` | Optimizar consultas EF Core |
+| `dotnet-webapi` | Patrones ASP.NET Core |
+| `dotnet-mstest-tests` | Tests unitarios |
+| `work-unit-commits` | Commits lógicos |
+| `comment-writer` | Código comentado profesional |
+| `cognitive-doc-design` | Documentación clara |

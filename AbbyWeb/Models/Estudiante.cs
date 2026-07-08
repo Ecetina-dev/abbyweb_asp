@@ -13,13 +13,13 @@ namespace AbbyWeb.Models
         [Display(Name = "Nombres")]
         [StringLength(100)]
         [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$", ErrorMessage = "Los nombres solo pueden contener letras y espacios.")]
-        public string Nombres { get; set; }
+        public string Nombres { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Los apellidos son obligatorios")]
         [Display(Name = "Apellidos")]
         [StringLength(100)]
         [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$", ErrorMessage = "Los apellidos solo pueden contener letras y espacios.")]
-        public string Apellidos { get; set; }
+        public string Apellidos { get; set; } = string.Empty;
 
         [Display(Name = "Dirección")]
         [StringLength(200)]
